@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目前資料庫中，香奈兒產品的列表</title>
+    <style>
+        body {
+            font-family: "Times New Roman", "微軟正黑體", serif;
+            display: flex;
+            justify-content: center;
+            padding: 40px 10px;
+            background-color: white;
+            color: black;
+        }
+
+        /* 綠色外框容器 */
+        .outer-border {
+            border: 2px solid #FF69B4;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 1100px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        /* 表格樣式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            border: 1px solid red; /* 紅色表格細線 */
+            padding: 12px 5px;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            font-weight: bold;
+            background-color: #f9f9f9;
+        }
+
+        .product-img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+
+        .footer-text {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="outer-border">
+        <h3>目前資料庫中，香奈兒 CHANEL 的所有產品列表</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>產品編碼</th>
+                    <th>產品名稱</th>
+                    <th>售價</th>
+                    <th>產品描述</th>
+                    <th>產品圖示</th>
+                    <th>現有庫存</th>
+                    <th>最後異動時間</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>perfume01</td><td>香奈兒 No.5 香水</td><td>NT$ 3,200</td><td>經典玫瑰與茉莉花香調，融合琥珀與麝香基調，散發優雅迷人的女性魅力，百年經典香水。</td><td><img src="image/drink1.jpg" class="product-img"></td><td>85</td><td>2026-04-30<br>10:15:00</td></tr>
+                <tr><td>perfume02</td><td>香奈兒 Chance 香水</td><td>NT$ 2,800</td><td>清新茉莉與粉紅胡椒的現代花果香調，帶來好運與愉悅的感覺，適合日常使用。</td><td><img src="image/drink2.jpg" class="product-img"></td><td>92</td><td>2026-04-30<br>10:15:00</td></tr>
+                <tr><td>lipstick01</td><td>香奈兒可可小姐唇膏</td><td>NT$ 1,800</td><td>絲絨質地，持久滋潤，經典紅色調，完美勾勒唇型，展現自信優雅的女性魅力。</td><td><img src="image/drink3.jpg" class="product-img"></td><td>120</td><td>2026-04-30<br>10:15:00</td></tr>
+                <tr><td>lipstick02</td><td>香奈兒炫亮魅力唇膏</td><td>NT$ 1,600</td><td>水潤質地，輕盈不黏膩，多種顏色選擇，帶來自然光澤，適合各種場合。</td><td><img src="image/drink4.jpg" class="product-img"></td><td>110</td><td>2026-04-30<br>10:15:00</td></tr>
+                
+                <tr><td>foundation01</td><td>香奈兒珍珠粉底液</td><td>NT$ 2,500</td><td>輕透質地，完美遮蓋瑕疵，富含珍珠粉成分，賦予肌膚自然光澤，持久不脫妝。</td><td><img src="image/cake1.jpg" class="product-img"></td><td>75</td><td>2026-04-30<br>10:15:00</td></tr>
+                <tr><td>foundation02</td><td>香奈兒持久粉底霜</td><td>NT$ 2,200</td><td>全天候持久遮蓋，控油保濕，適合各種膚質，打造完美無瑕的肌膚狀態。</td><td><img src="image/cake2.JPG" class="product-img"></td><td>80</td><td>2026-04-30<br>10:15:00</td></tr>
+                <tr><td>eyeshadow01</td><td>香奈兒四色眼影盤</td><td>NT$ 2,300</td><td>絲絨質地，色彩豐富，易於暈染，打造多種眼妝效果，專業級品質。</td><td><img src="image/cake3.jpg" class="product-img"></td><td>65</td><td>2026-04-30<br>10:15:00</td></tr>
+                <tr><td>mascara01</td><td>香奈兒濃密睫毛膏</td><td>NT$ 1,400</td><td>濃密捲翹雙效，防水防暈，輕鬆打造迷人眼眸，持久不掉妝。</td><td><img src="image/cake4.jpg" class="product-img"></td><td>95</td><td>2026-04-30<br>10:15:00</td></tr>
+
+                <tr><td>skincare01</td><td>香奈兒青春活力面霜</td><td>NT$ 3,500</td><td>富含維生素C與玻尿酸，深層保濕，淡化細紋，喚醒肌膚青春活力。</td><td><img src="image/bread1.JPG" class="product-img"></td><td>60</td><td>2026-04-30<br>10:15:00</td></tr>
+                <tr><td>skincare02</td><td>香奈兒藍色護手霜</td><td>NT$ 1,200</td><td>輕盈質地，快速吸收，富含維生素E與保濕成分，保護雙手柔嫩細緻。</td><td><img src="image/bread2.JPG" class="product-img"></td><td>100</td><td>2026-04-30<br>10:15:00</td></tr>
+                <tr><td>skincare03</td><td>香奈兒抗氧化精華液</td><td>NT$ 4,200</td><td>高濃度抗氧化成分，保護肌膚免受自由基傷害，改善膚色暗沉，提升肌膚亮度。</td><td><img src="image/bread3.JPG" class="product-img"></td><td>45</td><td>2026-04-30<br>10:15:00</td></tr>
+                <tr><td>skincare04</td><td>香奈兒眼霜</td><td>NT$ 2,800</td><td>專為眼周肌膚設計，淡化黑眼圈與細紋，緊緻眼周，展現明亮眼神。</td><td><img src="image/bread4.jpg" class="product-img"></td><td>70</td><td>2026-04-30<br>10:15:00</td></tr>
+            </tbody>
+        </table>
+
+        <div class="footer-text">目前共有 12 種 香奈兒 CHANEL 產品</div>
+    </div>
+
+</body>
+</html>

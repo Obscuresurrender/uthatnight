@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員資料庫展示 - 得正 dejeng</title>
+    <style>
+        body {
+            font-family: "Times New Roman", "微軟正黑體", serif;
+            display: flex;
+            justify-content: center;
+            padding: 50px 10px;
+            background-color: white;
+            color: black;
+        }
+
+        /* 仿範例的綠色外框容器 */
+        .outer-border {
+            border: 2px solid #FF69B4; 
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 800px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        /* 表格樣式 */
+        table {
+            width: 95%;
+            margin: 0 auto 40px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid red; /* 紅色表格細線 */
+            padding: 12px 10px;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        th {
+            font-weight: bold;
+            background-color: white;
+        }
+
+        /* 底部統計文字 */
+        .footer-count {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="outer-border">
+        <h2>會員列表</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>帳號</th>
+                    <th>姓名</th>
+                    <th>電話</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>sjjwyn@gmail.com</td>
+                    <td>陳大明</td>
+                    <td>0912-345-678</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>a113280062@gm.usc.edu.tw</td>
+                    <td>吳宜庭</td>
+                    <td>0965-654-560</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>fuwayde@gmail.com</td>
+                    <td>傅小華</td>
+                    <td>0922-111-222</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>hans950501@gmail.com</td>
+                    <td>王漢斯</td>
+                    <td>0933-555-666</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>brown157506@gmail.com</td>
+                    <td>李布朗</td>
+                    <td>0977-888-999</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>wayde.fu@gmail.com</td>
+                    <td>傅維德</td>
+                    <td>0910-123-456</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer-count">目前會員數量 : 6</div>
+    </div>
+
+</body>
+</html>

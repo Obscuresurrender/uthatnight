@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單列表 - 香奈兒 CHANEL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root { --primary-gradient: linear-gradient(90deg, #FF69B4 0%, #FFC0CB 100%); --glass-bg: rgba(255, 255, 255, 0.9); }
+        body { background: #FFF0F5; color: #333; font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+        .navbar { background: #FFF0F5 !important; border-bottom: 1px solid rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000; }
+        .brand-logo { font-weight: bold; color: #FF69B4; text-decoration: none; display: flex; align-items: center; }
+        .brand-logo img { width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; }
+        
+        .main-content { flex: 1; padding: 2rem; }
+        .page-header { text-align: center; margin-bottom: 2rem; }
+        .page-header h1 { color: #FF69B4; font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .page-header p { color: #888; font-size: 1rem; margin: 0; }
+        
+        .order-list-container { max-width: 900px; margin: 0 auto; }
+        
+        .order-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .order-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+            border-color: #FF69B4;
+        }
+        
+        .order-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #FFE0E6;
+            margin-bottom: 15px;
+        }
+        
+        .order-card-info {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .order-id {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .order-id strong {
+            color: #FF69B4;
+            font-size: 1.1rem;
+        }
+        
+        .order-date {
+            font-size: 0.85rem;
+            color: #999;
+        }
+        
+        .order-status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .status-pending { background: #FFF3CD; color: #856404; }
+        .status-completed { background: #D4EDDA; color: #155724; }
+        .status-cancelled { background: #F8D7DA; color: #721C24; }
+        
+        .order-card-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .order-summary {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .summary-label { color: #666; }
+        .summary-value { color: #333; font-weight: 600; }
+        
+        .order-total {
+            font-size: 1.2rem;
+            color: #FF69B4;
+            font-weight: 700;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .order-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-view-details {
+            background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(255, 105, 180, 0.3);
+        }
+        
+        .btn-view-details:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 12px rgba(255, 105, 180, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-state-icon {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .empty-state p {
+            color: #999;
+            margin-bottom: 25px;
+        }
+        
+        .btn-continue-shopping {
+            background: white;
+            border: 2px solid #FF69B4;
+            color: #FF69B4;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-continue-shopping:hover {
+            background: #FF69B4;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .btn-custom {
+            border: 2px solid #FF69B4;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #006241;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f2f6f4;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .btn-custom:hover {
+            background: #00704A;
+            color: white;
+            border-color: #00704A;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%);
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+            border-top: 3px solid #FF69B4;
+            margin-top: auto;
+        }
+        .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #FF69B4, #FFC0CB); }
+        .footer-section { display: flex; flex-direction: column; gap: 1.2rem; min-width: 0; }
+        .footer-section h3 { color: #333; font-size: 1.3rem; font-weight: 600; position: relative; padding-bottom: 0.8rem; margin-bottom: 0.5rem; }
+        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, #FF69B4, #FFC0CB); border-radius: 2px; }
+        .footer-section p, .footer-section ul li { color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0; }
+        .footer-section ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.8rem; }
+        .footer-section ul li { display: flex; align-items: center; transition: transform 0.3s ease; white-space: nowrap; }
+        .footer-section ul li a { text-decoration: none; color: inherit; width: 100%; display: inline-block; }
+        .footer-section ul li:hover { transform: translateX(5px); color: #FF69B4; }
+        .social-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
+        .social-links a { text-decoration: none; color: #666; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; transition: all 0.3s ease; background: rgba(255, 182, 193, 0.1); display: inline-flex; align-items: center; white-space: nowrap; }
+        .social-links a:hover { background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); color: white; transform: translateY(-2px); }
+        
+        @media (max-width: 768px) {
+            .order-card-header { flex-direction: column; align-items: flex-start; }
+            .order-card-body { flex-direction: column; align-items: stretch; }
+            .order-summary { margin-top: 15px; }
+            .order-actions { width: 100%; }
+            .btn-view-details { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand brand-logo" href="index.html">
+                <i class="fa-solid fa-crown"></i> CHANEL
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="order.html">訂單查詢</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html">購物車</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-list"></i> 訂單列表</h1>
+                <p>查看您的訂單歷史與詳細信息</p>
+            </div>
+
+            <div class="order-list-container" id="order-list-container">
+                <!-- 訂單列表將由 JavaScript 動態生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-section">
+            <h3><i class="fa-solid fa-crown"></i> CHANEL</h3>
+            <p>專業奢侈品購物平台，提供最精選的商品與服務。</p>
+        </div>
+        <div class="footer-section">
+            <h3>快速連結</h3>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="product.html">商品</a></li>
+                <li><a href="cart.html">購物車</a></li>
+                <li><a href="order.html">訂單查詢</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>聯絡方式</h3>
+            <p>電話: 0800-000-000<br>信箱: support@chanel.com</p>
+            <div class="social-links">
+                <a href="https://facebook.com"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 模擬訂單資料（實際應從後端 API 或 LocalStorage 獲取）
+        const mockOrders = [
+            {
+                id: 'ORD001',
+                date: '2024-06-01',
+                status: 'completed',
+                itemCount: 2,
+                total: 6700,
+                items: [
+                    { id: 1, name: '香奈兒 No.5', price: 3200, quantity: 1 },
+                    { id: 2, name: '香奈兒香水', price: 3500, quantity: 1 }
+                ]
+            },
+            {
+                id: 'ORD002',
+                date: '2024-06-02',
+                status: 'pending',
+                itemCount: 1,
+                total: 8800,
+                items: [
+                    { id: 3, name: 'Coco Mademoiselle', price: 8800, quantity: 1 }
+                ]
+            },
+            {
+                id: 'ORD003',
+                date: '2024-05-28',
+                status: 'completed',
+                itemCount: 3,
+                total: 5280,
+                items: [
+                    { id: 4, name: 'Coco Rouge 唇膏', price: 1280, quantity: 2 },
+                    { id: 5, name: 'Les Beiges 粉底', price: 2080, quantity: 1 }
+                ]
+            }
+        ];
+
+        function renderOrderList() {
+            const container = document.getElementById('order-list-container');
+            
+            if (mockOrders.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <i class="fa-solid fa-inbox"></i>
+                        </div>
+                        <h3>暫無訂單</h3>
+                        <p>您還沒有任何訂單記錄</p>
+                        <a href="index.html" class="btn-continue-shopping">
+                            <i class="fa-solid fa-arrow-left"></i> 繼續購物
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            mockOrders.forEach(order => {
+                const statusText = {
+                    'completed': '已完成',
+                    'pending': '處理中',
+                    'cancelled': '已取消'
+                };
+                const statusClass = `status-${order.status}`;
+                const statusLabel = statusText[order.status] || '未知';
+
+                const formattedDate = new Date(order.date).toLocaleDateString('zh-TW');
+
+                html += `
+                    <div class="order-card">
+                        <div class="order-card-header">
+                            <div class="order-card-info">
+                                <div class="order-id">訂單編號: <strong>${order.id}</strong></div>
+                                <div class="order-date">下單日期: ${formattedDate}</div>
+                            </div>
+                            <span class="order-status ${statusClass}">${statusLabel}</span>
+                        </div>
+                        
+                        <div class="order-card-body">
+                            <div class="order-summary">
+                                <div class="summary-row">
+                                    <span class="summary-label">商品數量:</span>
+                                    <span class="summary-value">${order.itemCount} 件</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span class="summary-label">商品名稱:</span>
+                                    <span class="summary-value">${order.items.map(i => i.name).join(', ')}</span>
+                                </div>
+                                <div class="order-total">
+                                    總金額: NT$ ${order.total.toLocaleString()}
+                                </div>
+                            </div>
+                            
+                            <div class="order-actions">
+                                <a href="order_items.html?orderId=${order.id}" class="btn-view-details">
+                                    <i class="fa-solid fa-eye"></i> 查看詳情
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html + `
+                <div class="button-group">
+                    <a href="index.html" class="btn-custom"><i class="fa-solid fa-house"></i> 回首頁</a>
+                    <a href="cart.html" class="btn-custom"><i class="fa-solid fa-cart-shopping"></i> 繼續購物</a>
+                </div>
+            `;
+        }
+
+        // 頁面載入時渲染訂單列表
+        document.addEventListener('DOMContentLoaded', renderOrderList);
+    </script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品詳細介紹 - 香奈兒 CHANEL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #FFF0F5; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        .navbar { background: #FFF0F5; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .navbar-container { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+        .navbar-logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #FF69B4; text-decoration: none; }
+        .navbar-logo .logo { width: 40px; height: 40px; margin-right: 10px; }
+        .navbar-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
+        .navbar-menu a { text-decoration: none; color: #FF69B4; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem; }
+        .navbar-menu a:hover { color: #FF1493; }
+
+        .product-page-wrapper { flex: 1; padding: 4rem 2rem; display: flex; justify-content: center; align-items: center; }
+        .product-detail-container { 
+            background: white; max-width: 1000px; width: 100%; border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08); display: flex; overflow: hidden; position: relative;
+        }
+        .breadcrumb { position: absolute; top: 20px; left: 30px; font-size: 0.9rem; color: #888; }
+        .breadcrumb a { color: #FF69B4; text-decoration: none; }
+        
+        .image-section { flex: 1; background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); padding: 4rem; display: flex; justify-content: center; align-items: center; }
+        .image-section img { width: 100%; max-width: 350px; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); transition: transform 0.3s ease; }
+        .image-section img:hover { transform: scale(1.03); }
+
+        .info-section { flex: 1; padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+        .badge { display: inline-block; background: #FF69B4; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; letter-spacing: 1px; }
+        .pd-title { font-size: 2.5rem; color: #FF69B4; font-weight: 700; margin-bottom: 15px; }
+        .pd-desc { font-size: 1rem; color: #666; line-height: 1.8; margin-bottom: 25px; }
+        .pd-price { font-size: 2.2rem; font-weight: 700; color: #FF69B4; margin-bottom: 25px; }
+        
+        .option-group { margin-bottom: 20px; }
+        .option-title { font-weight: 600; color: #FF69B4; margin-bottom: 10px; font-size: 1.1rem; }
+        .pill-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .pill { padding: 8px 18px; border: 2px solid #F5F5F5; border-radius: 30px; color: #FF69B4; font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
+        .pill:hover { border-color: #FF69B4; color: #FF69B4; }
+        .pill.active { background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); color: white; border-color: transparent; box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3); }
+
+        .qty-container { display: flex; align-items: center; gap: 15px; }
+        .qty-btn { background: #F5F5F5; color: #FF69B4; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; }
+        .qty-btn:hover { background: #FF69B4; color: white; transform: scale(1.1); }
+        .qty-input { width: 60px; height: 40px; text-align: center; border: 2px solid #F5F5F5; border-radius: 10px; font-size: 1.2rem; font-weight: bold; color: #FF69B4; outline: none; }
+
+        .btn-add-cart { background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); color: white; border: none; padding: 18px; border-radius: 50px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; margin-top: 20px; box-shadow: 0 10px 20px rgba(255, 105, 180, 0.3); display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .btn-add-cart:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(255, 105, 180, 0.4); }
+
+        @media (max-width: 900px) {
+            .product-detail-container { flex-direction: column; }
+            .image-section { padding: 3rem 2rem; } .image-section img { max-width: 250px; }
+            .info-section { padding: 3rem 2rem; } .pd-title { font-size: 2rem; }
+        }
+
+        /* Footer Styles */
+        .footer { background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%); padding: 4rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; position: relative; overflow: hidden; border-top: none; }
+        .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #FF69B4, #FFC0CB); }
+        .footer-section { display: flex; flex-direction: column; gap: 1.2rem; min-width: 0; }
+        .footer-section h3 { color: #333; font-size: 1.3rem; font-weight: 600; position: relative; padding-bottom: 0.8rem; margin-bottom: 0.5rem; }
+        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, #FF69B4, #FFC0CB); border-radius: 2px; }
+        .footer-section p, .footer-section ul li { color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0; }
+        .footer-section ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.8rem; }
+        .footer-section ul li { display: flex; align-items: center; transition: transform 0.3s ease; white-space: nowrap; }
+        .footer-section ul li a { text-decoration: none; color: inherit; width: 100%; display: inline-block; }
+        .footer-section ul li:hover { transform: translateX(5px); color: #FF69B4; }
+        .social-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
+        .social-links a { text-decoration: none; color: #666; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; transition: all 0.3s ease; background: rgba(255, 182, 193, 0.1); display: inline-flex; align-items: center; white-space: nowrap; }
+        .social-links a:hover { background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); color: white; transform: translateY(-2px); }
+        .social-logo { width: 20px; height: 20px; margin-right: 8px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="image/logo.png" alt="上品基酒" class="logo">
+                <span>香奈兒 CHANEL</span>
+            </a>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li><a href="index.html#perfume"><i class="fa-solid fa-bottle-droplet"></i> 香水</a></li>
+                <li><a href="index.html#makeup"><i class="fa-solid fa-wand-magic-sparkles"></i> 彩妝</a></li>
+                <li><a href="index.html#skincare"><i class="fa-solid fa-spa"></i> 護膚品</a></li>
+                <li><a href="leaderboard.html"><i class="fa-solid fa-crown"></i> 排行榜</a></li>
+                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> 購物車</a></li>
+                <li id="nav-login"><a href="login.html"><i class="fa-solid fa-user"></i> 登入/註冊</a></li>
+                <li id="nav-user" style="display:none;"><a href="#" id="user-display" style="color:#8B4513; font-weight:bold;"></a></li>
+                <li id="nav-logout" style="display:none;"><a href="#" id="btn-logout" style="color:#e74c3c;">登出</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="product-page-wrapper">
+        <div class="product-detail-container">
+            <div class="breadcrumb"><a href="index.html">首頁</a> > <span style="color:#8B4513;">商品詳細</span></div>
+            
+            <div class="image-section">
+                <img id="pd-image" src="" alt="商品圖片">
+            </div>
+            
+            <div class="info-section">
+                <div id="pd-badge" class="badge">推薦商品</div>
+                <h1 class="pd-title" id="pd-name">載入中...</h1>
+                <p class="pd-desc" id="pd-desc">商品描述載入中，請稍候...</p>
+                <div class="pd-price" id="pd-price">NT$ 0</div>
+
+                <div class="option-group" id="sugar-group">
+                    <div class="option-title"><i class="fa-solid fa-spoon"></i> 甜度選擇</div>
+                    <div class="pill-container" id="sugar-options">
+                        <div class="pill active" onclick="selectPill(this, 'sugar-options')">正常糖</div>
+                        <div class="pill" onclick="selectPill(this, 'sugar-options')">少糖</div>
+                        <div class="pill" onclick="selectPill(this, 'sugar-options')">半糖</div>
+                        <div class="pill" onclick="selectPill(this, 'sugar-options')">微糖</div>
+                        <div class="pill" onclick="selectPill(this, 'sugar-options')">無糖</div>
+                    </div>
+                </div>
+
+                <div class="option-group" id="ice-group">
+                    <div class="option-title"><i class="fa-solid fa-snowflake"></i> 冰塊選擇</div>
+                    <div class="pill-container" id="ice-options">
+                        <div class="pill active" onclick="selectPill(this, 'ice-options')">正常冰</div>
+                        <div class="pill" onclick="selectPill(this, 'ice-options')">少冰</div>
+                        <div class="pill" onclick="selectPill(this, 'ice-options')">微冰</div>
+                        <div class="pill" onclick="selectPill(this, 'ice-options')">去冰</div>
+                        <div class="pill" onclick="selectPill(this, 'ice-options')">完全去冰</div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <div class="option-title"><i class="fa-solid fa-plus-minus"></i> 購買數量</div>
+                    <div class="qty-container">
+                        <button class="qty-btn" onclick="changeQty(-1)"><i class="fa-solid fa-minus"></i></button>
+                        <input type="number" id="pd-qty" class="qty-input" value="1" min="1" readonly>
+                        <button class="qty-btn" onclick="changeQty(1)"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <button class="btn-add-cart" id="add-to-cart-btn">
+                    <i class="fa-solid fa-cart-plus"></i> 加入購物車
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-section">
+            <h3>品牌區塊</h3>
+            <p>香奈兒 CHANEL - 香水 x 彩妝 x 護膚品</p>
+            <div class="social-links">
+                <a href="https://instagram.com" target="_blank"><img src="image/Instagram-logo.png" alt="Instagram Logo" class="social-logo"> Instagram</a>
+                <a href="https://line.me" target="_blank"><img src="image/line-logo.png" alt="LINE Logo" class="social-logo"> LINE</a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>BUSINESS 商業區塊</h3>
+            <ul>
+                <li><a href="index.html#perfume">🫧 經典香水</a></li>
+                <li><a href="index.html#makeup">💄 精緻彩妝</a></li>
+                <li><a href="index.html#skincare">🧴 奢華護膚</a></li>
+                <li><a href="leaderboard.html">⭐ 熱銷排行</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>CONTACT 聯繫區塊</h3>
+            <p>📧 電子郵件：a113280055@gm.usc.edu.tw</p>
+            <p>📞 電話：0952702813</p>
+            <p>🏪 地址：台北市大安區忠孝東路四段123號</p>
+        </div>
+        <div class="footer-section">
+            <h3>版權資訊</h3>
+            <p>© 2025 香奈兒 CHANEL. All rights reserved.</p>
+            <p>設計製作者：薛翔謙</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = { apiKey: "AIzaSyC-LcCfcPYCYAQZ7n45YCe6tCY_jb-ygvI", authDomain: "sonicboom-shop.firebaseapp.com", projectId: "sonicboom-shop", storageBucket: "sonicboom-shop.firebasestorage.app", messagingSenderId: "976804831944", appId: "1:976804831944:web:6ede6a95196478bd49bbfd", measurementId: "G-3FEKWL0QXZ" };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            const navLogin = document.getElementById('nav-login');
+            const navUser = document.getElementById('nav-user');
+            const navLogout = document.getElementById('nav-logout');
+            const userDisplay = document.getElementById('user-display');
+
+            if (user) {
+                navLogin.style.display = 'none';
+                navUser.style.display = 'block';
+                navLogout.style.display = 'block';
+                userDisplay.innerHTML = `<i class="fa-solid fa-user-check me-1"></i> 會員 ${user.displayName || user.email.split('@')[0]}`;
+            } else {
+                navLogin.style.display = 'block';
+                navUser.style.display = 'none';
+                navLogout.style.display = 'none';
+            }
+        });
+
+        document.getElementById('btn-logout').addEventListener('click', (e) => {
+            e.preventDefault();
+            if(confirm("確定要登出嗎？")) { localStorage.removeItem('starbucks_cart'); signOut(auth).then(() => { window.location.href = "index.html"; }); }
+        });
+    </script>
+
+    <script>
+        function selectPill(element, containerId) {
+            const container = document.getElementById(containerId);
+            const pills = container.getElementsByClassName('pill');
+            for(let i = 0; i < pills.length; i++) { pills[i].classList.remove('active'); }
+            element.classList.add('active');
+        }
+
+        function changeQty(amount) {
+            const qtyInput = document.getElementById('pd-qty');
+            let currentQty = parseInt(qtyInput.value);
+            currentQty += amount;
+            if(currentQty < 1) currentQty = 1;
+            qtyInput.value = currentQty;
+        }
+
+        const productsDB = {
+            "tea01": { name: "水之森玄米抹茶", price: 65, img: "image/drink1.jpg", desc: "嚴選靜岡抹茶搭配焙煎玄米，茶湯翠綠，帶有濃郁的米香與抹茶回甘。" },
+            "tea02": { name: "英倫伯爵紅茶", price: 55, img: "image/drink2.jpg", desc: "特選錫蘭紅茶為基底，佐以佛手柑香氣，茶感醇厚，散發迷人優雅的英倫風情。" },
+            "tea03": { name: "珍珠鮮奶", price: 75, img: "image/drink3.jpg", desc: "Q彈手作珍珠搭配綠光牧場直送鮮乳，濃郁奶香與黑糖香氣完美融合。" },
+            "tea04": { name: "手炒黑糖鮮奶", price: 80, img: "image/drink1.jpg", desc: "職人每日手工慢炒黑糖，淋上醇厚鮮奶，甜而不膩，帶有獨特焦糖香。" },
+            
+            "cake01": { name: "草莓鮮奶油蛋糕", price: 120, img: "image/cake1.jpg", desc: "綿密海綿蛋糕搭配新鮮草莓與特調鮮奶油，甜而不膩的夢幻滋味。" },
+            "cake02": { name: "芒果夏洛特", price: 130, img: "image/cake2.jpg", desc: "外圍酥脆手指餅乾，包裹著香濃芒果慕斯與新鮮芒果果肉，夏日限定。" },
+            "cake03": { name: "經典黑森林", price: 110, img: "image/cake1.jpg", desc: "濃郁巧克力蛋糕體加上酒漬櫻桃，鋪滿巧克力碎片，經典德式風味。" },
+            "cake04": { name: "法式檸檬塔", price: 100, img: "image/cake2.jpg", desc: "酥脆塔皮搭配酸甜平衡的法式檸檬奶油餡，清新解膩的好選擇。" },
+
+            "bread01": { name: "法式經典長棍", price: 65, img: "image/bread1.jpg", desc: "外皮酥脆內裡充滿麥香，適合單吃或搭配濃湯的經典法國麵包。" },
+            "bread02": { name: "綜合雜糧麵包", price: 80, img: "image/bread2.jpg", desc: "富含多種穀物與堅果，口感紮實有嚼勁，健康滿分的美味選擇。" },
+            "bread03": { name: "奶油海鹽羅宋", price: 70, img: "image/bread3.jpg", desc: "濃郁奶油香氣與微鹹海鹽的完美結合，層層分明的酥脆口感。" },
+            "bread04": { name: "香蒜帕瑪森", price: 75, img: "image/bread1.jpg", desc: "塗滿特製香蒜奶油與帕瑪森起司，烤至金黃酥脆，香氣四溢。" }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            if(productId && productsDB[productId]) {
+                const pd = productsDB[productId];
+                document.title = `${pd.name} - 星巴克 Starbucks`;
+                document.getElementById('pd-image').src = pd.img;
+                document.getElementById('pd-name').innerText = pd.name;
+                document.getElementById('pd-desc').innerText = pd.desc;
+                document.getElementById('pd-price').innerText = `NT$ ${pd.price}`;
+                
+                // 動態判斷是否顯示冰塊甜度
+                if (!productId.startsWith('tea')) {
+                    document.getElementById('sugar-group').style.display = 'none';
+                    document.getElementById('ice-group').style.display = 'none';
+                    document.getElementById('pd-badge').innerText = '精緻蛋糕 / 手工麵包';
+                    document.getElementById('pd-badge').style.background = '#2ECC71';
+                }
+
+                document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+                    const qty = parseInt(document.getElementById('pd-qty').value);
+                    let sugar = '--';
+                    let ice = '--';
+                    
+                    if (productId.startsWith('tea')) {
+                        sugar = document.querySelector('#sugar-options .active').innerText;
+                        ice = document.querySelector('#ice-options .active').innerText;
+                    }
+                    
+                    let cart = JSON.parse(localStorage.getItem('starbucks_cart')) || [];
+                    const existingIndex = cart.findIndex(item => item.id === productId && item.sugar === sugar && item.ice === ice);
+                    
+                    if (existingIndex > -1) { cart[existingIndex].qty += qty; } 
+                    else { cart.push({ id: productId, qty: qty, sugar: sugar, ice: ice }); }
+
+                    localStorage.setItem('starbucks_cart', JSON.stringify(cart));
+                    let alertText = productId.startsWith('tea') ? `(${sugar}/${ice}) ` : '';
+                    alert(`【${pd.name}】${alertText}x ${qty} 已加入購物車！`);
+                    window.location.href = "cart.html";
+                });
+            } else {
+                alert('找不到該商品！將返回首頁。');
+                window.location.href = "index.html";
+            }
+        });
+    </script>
+</body>
+</html>
