@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品詳細介紹 - 香奈兒 CHANEL</title>
+    <title>商品詳細介紹 - 上品基酒</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #FFF0F5; min-height: 100vh; display: flex; flex-direction: column; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #F0E6D2; min-height: 100vh; display: flex; flex-direction: column; }
         
-        .navbar { background: #FFF0F5; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .navbar { background: #F5EEDC; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
         .navbar-container { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-        .navbar-logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #FF69B4; text-decoration: none; }
+        .navbar-logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #8B4513; text-decoration: none; }
         .navbar-logo .logo { width: 40px; height: 40px; margin-right: 10px; }
         .navbar-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
-        .navbar-menu a { text-decoration: none; color: #FF69B4; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem; }
-        .navbar-menu a:hover { color: #FF1493; }
+        .navbar-menu a { text-decoration: none; color: #8B4513; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem; }
+        .navbar-menu a:hover { color: #A0522D; }
+        .cart-badge { display: none; margin-left: 6px; min-width: 24px; font-size: 0.8rem; padding: 2px 8px; border-radius: 999px; background: #8B4513; color: white; font-weight: 700; }
 
         .product-page-wrapper { flex: 1; padding: 4rem 2rem; display: flex; justify-content: center; align-items: center; }
         .product-detail-container { 
@@ -25,32 +26,33 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.08); display: flex; overflow: hidden; position: relative;
         }
         .breadcrumb { position: absolute; top: 20px; left: 30px; font-size: 0.9rem; color: #888; }
-        .breadcrumb a { color: #FF69B4; text-decoration: none; }
+        .breadcrumb a { color: #8B4513; text-decoration: none; }
         
-        .image-section { flex: 1; background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); padding: 4rem; display: flex; justify-content: center; align-items: center; }
+        .image-section { flex: 1; background: linear-gradient(135deg, #DEB887 0%, #D2B48C 100%); padding: 4rem; display: flex; justify-content: center; align-items: center; }
         .image-section img { width: 100%; max-width: 350px; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); transition: transform 0.3s ease; }
         .image-section img:hover { transform: scale(1.03); }
 
         .info-section { flex: 1; padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; }
-        .badge { display: inline-block; background: #FF69B4; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; letter-spacing: 1px; }
-        .pd-title { font-size: 2.5rem; color: #FF69B4; font-weight: 700; margin-bottom: 15px; }
+        .badge { display: inline-block; background: #D4A574; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; letter-spacing: 1px; }
+        .pd-title { font-size: 2.5rem; color: #8B4513; font-weight: 700; margin-bottom: 15px; }
         .pd-desc { font-size: 1rem; color: #666; line-height: 1.8; margin-bottom: 25px; }
-        .pd-price { font-size: 2.2rem; font-weight: 700; color: #FF69B4; margin-bottom: 25px; }
+        .pd-price { font-size: 2.2rem; font-weight: 700; color: #8B4513; margin-bottom: 10px; }
+        .pd-stock { color: #6F4E37; font-weight: 600; margin-bottom: 25px; }
         
         .option-group { margin-bottom: 20px; }
-        .option-title { font-weight: 600; color: #FF69B4; margin-bottom: 10px; font-size: 1.1rem; }
+        .option-title { font-weight: 600; color: #8B4513; margin-bottom: 10px; font-size: 1.1rem; }
         .pill-container { display: flex; flex-wrap: wrap; gap: 10px; }
-        .pill { padding: 8px 18px; border: 2px solid #F5F5F5; border-radius: 30px; color: #FF69B4; font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
-        .pill:hover { border-color: #FF69B4; color: #FF69B4; }
-        .pill.active { background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); color: white; border-color: transparent; box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3); }
+        .pill { padding: 8px 18px; border: 2px solid #F5F5F5; border-radius: 30px; color: #8B4513; font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
+        .pill:hover { border-color: #8B4513; color: #8B4513; }
+        .pill.active { background: linear-gradient(135deg, #8B4513 0%, #5C2E0F 100%); color: white; border-color: transparent; box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3); }
 
         .qty-container { display: flex; align-items: center; gap: 15px; }
-        .qty-btn { background: #F5F5F5; color: #FF69B4; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; }
-        .qty-btn:hover { background: #FF69B4; color: white; transform: scale(1.1); }
-        .qty-input { width: 60px; height: 40px; text-align: center; border: 2px solid #F5F5F5; border-radius: 10px; font-size: 1.2rem; font-weight: bold; color: #FF69B4; outline: none; }
+        .qty-btn { background: #F5F5F5; color: #8B4513; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; }
+        .qty-btn:hover { background: #8B4513; color: white; transform: scale(1.1); }
+        .qty-input { width: 60px; height: 40px; text-align: center; border: 2px solid #F5F5F5; border-radius: 10px; font-size: 1.2rem; font-weight: bold; color: #8B4513; outline: none; }
 
-        .btn-add-cart { background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); color: white; border: none; padding: 18px; border-radius: 50px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; margin-top: 20px; box-shadow: 0 10px 20px rgba(255, 105, 180, 0.3); display: flex; justify-content: center; align-items: center; gap: 10px; }
-        .btn-add-cart:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(255, 105, 180, 0.4); }
+        .btn-add-cart { background: linear-gradient(135deg, #8B4513 0%, #5C2E0F 100%); color: white; border: none; padding: 18px; border-radius: 50px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; margin-top: 20px; box-shadow: 0 10px 20px rgba(139, 69, 19, 0.3); display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .btn-add-cart:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(139, 69, 19, 0.4); }
 
         @media (max-width: 900px) {
             .product-detail-container { flex-direction: column; }
@@ -59,19 +61,19 @@
         }
 
         /* Footer Styles */
-        .footer { background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%); padding: 4rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; position: relative; overflow: hidden; border-top: none; }
-        .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #FF69B4, #FFC0CB); }
+        .footer { background: linear-gradient(135deg, #4A3623 0%, #3C2A1E 100%); padding: 4rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; position: relative; overflow: hidden; border-top: none; }
+        .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #8B4513, #5C2E0F); }
         .footer-section { display: flex; flex-direction: column; gap: 1.2rem; min-width: 0; }
-        .footer-section h3 { color: #333; font-size: 1.3rem; font-weight: 600; position: relative; padding-bottom: 0.8rem; margin-bottom: 0.5rem; }
-        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, #FF69B4, #FFC0CB); border-radius: 2px; }
-        .footer-section p, .footer-section ul li { color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0; }
+        .footer-section h3 { color: #F5EEDC; font-size: 1.3rem; font-weight: 600; position: relative; padding-bottom: 0.8rem; margin-bottom: 0.5rem; }
+        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, #8B4513, #5C2E0F); border-radius: 2px; }
+        .footer-section p, .footer-section ul li { color: #D2C4A7; font-size: 0.95rem; line-height: 1.6; margin: 0; }
         .footer-section ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.8rem; }
         .footer-section ul li { display: flex; align-items: center; transition: transform 0.3s ease; white-space: nowrap; }
         .footer-section ul li a { text-decoration: none; color: inherit; width: 100%; display: inline-block; }
-        .footer-section ul li:hover { transform: translateX(5px); color: #FF69B4; }
+        .footer-section ul li:hover { transform: translateX(5px); color: #8B4513; }
         .social-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
-        .social-links a { text-decoration: none; color: #666; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; transition: all 0.3s ease; background: rgba(255, 182, 193, 0.1); display: inline-flex; align-items: center; white-space: nowrap; }
-        .social-links a:hover { background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); color: white; transform: translateY(-2px); }
+        .social-links a { text-decoration: none; color: #D2C4A7; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; transition: all 0.3s ease; background: rgba(139, 69, 19, 0.1); display: inline-flex; align-items: center; white-space: nowrap; }
+        .social-links a:hover { background: linear-gradient(135deg, #8B4513 0%, #5C2E0F 100%); color: white; transform: translateY(-2px); }
         .social-logo { width: 20px; height: 20px; margin-right: 8px; }
     </style>
 </head>
@@ -80,15 +82,16 @@
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">
-                <img src="image/logo.png" alt="上品基酒" class="logo">
-                <span>香奈兒 CHANEL</span>
+                <img src="image/logo.jpg" alt="上品基酒" class="logo">
+                <span>上品基酒</span>
             </a>
             <ul class="navbar-menu" id="navbarMenu">
-                <li><a href="index.html#perfume"><i class="fa-solid fa-bottle-droplet"></i> 香水</a></li>
-                <li><a href="index.html#makeup"><i class="fa-solid fa-wand-magic-sparkles"></i> 彩妝</a></li>
-                <li><a href="index.html#skincare"><i class="fa-solid fa-spa"></i> 護膚品</a></li>
+                <li><a href="index.html#vodka"><i class="fa-solid fa-bottle-water"></i> 伏特加</a></li>
+                <li><a href="index.html#whiskey"><i class="fa-solid fa-tumbler"></i> 威士忌</a></li>
+                <li><a href="index.html#rum"><i class="fa-solid fa-flask"></i> 朗姆酒</a></li>
                 <li><a href="leaderboard.html"><i class="fa-solid fa-crown"></i> 排行榜</a></li>
-                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> 購物車</a></li>
+                <li><a href="order.html"><i class="fa-solid fa-list-check"></i> 訂單查閱</a></li>
+                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> 購物車 <span data-cart-count class="cart-badge">0</span></a></li>
                 <li id="nav-login"><a href="login.html"><i class="fa-solid fa-user"></i> 登入/註冊</a></li>
                 <li id="nav-user" style="display:none;"><a href="#" id="user-display" style="color:#8B4513; font-weight:bold;"></a></li>
                 <li id="nav-logout" style="display:none;"><a href="#" id="btn-logout" style="color:#e74c3c;">登出</a></li>
@@ -151,7 +154,7 @@
     <footer class="footer">
         <div class="footer-section">
             <h3>品牌區塊</h3>
-            <p>香奈兒 CHANEL - 香水 x 彩妝 x 護膚品</p>
+            <p>星巴克 Starbucks - 飲品 x 蛋糕 x 麵包</p>
             <div class="social-links">
                 <a href="https://instagram.com" target="_blank"><img src="image/Instagram-logo.png" alt="Instagram Logo" class="social-logo"> Instagram</a>
                 <a href="https://line.me" target="_blank"><img src="image/line-logo.png" alt="LINE Logo" class="social-logo"> LINE</a>
@@ -160,9 +163,9 @@
         <div class="footer-section">
             <h3>BUSINESS 商業區塊</h3>
             <ul>
-                <li><a href="index.html#perfume">🫧 經典香水</a></li>
-                <li><a href="index.html#makeup">💄 精緻彩妝</a></li>
-                <li><a href="index.html#skincare">🧴 奢華護膚</a></li>
+                <li><a href="index.html#drinks">🥤 經典飲品</a></li>
+                <li><a href="index.html#cakes">🍰 精緻蛋糕</a></li>
+                <li><a href="index.html#breads">🥖 手工麵包</a></li>
                 <li><a href="leaderboard.html">⭐ 熱銷排行</a></li>
             </ul>
         </div>
@@ -174,11 +177,12 @@
         </div>
         <div class="footer-section">
             <h3>版權資訊</h3>
-            <p>© 2025 香奈兒 CHANEL. All rights reserved.</p>
+            <p>© 2025 星巴克 Starbucks. All rights reserved.</p>
             <p>設計製作者：薛翔謙</p>
         </div>
     </footer>
 
+    <script src="js/site.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -227,29 +231,57 @@
             qtyInput.value = currentQty;
         }
 
-        const productsDB = {
-            "tea01": { name: "水之森玄米抹茶", price: 65, img: "image/drink1.jpg", desc: "嚴選靜岡抹茶搭配焙煎玄米，茶湯翠綠，帶有濃郁的米香與抹茶回甘。" },
-            "tea02": { name: "英倫伯爵紅茶", price: 55, img: "image/drink2.jpg", desc: "特選錫蘭紅茶為基底，佐以佛手柑香氣，茶感醇厚，散發迷人優雅的英倫風情。" },
-            "tea03": { name: "珍珠鮮奶", price: 75, img: "image/drink3.jpg", desc: "Q彈手作珍珠搭配綠光牧場直送鮮乳，濃郁奶香與黑糖香氣完美融合。" },
-            "tea04": { name: "手炒黑糖鮮奶", price: 80, img: "image/drink1.jpg", desc: "職人每日手工慢炒黑糖，淋上醇厚鮮奶，甜而不膩，帶有獨特焦糖香。" },
-            
-            "cake01": { name: "草莓鮮奶油蛋糕", price: 120, img: "image/cake1.jpg", desc: "綿密海綿蛋糕搭配新鮮草莓與特調鮮奶油，甜而不膩的夢幻滋味。" },
-            "cake02": { name: "芒果夏洛特", price: 130, img: "image/cake2.jpg", desc: "外圍酥脆手指餅乾，包裹著香濃芒果慕斯與新鮮芒果果肉，夏日限定。" },
-            "cake03": { name: "經典黑森林", price: 110, img: "image/cake1.jpg", desc: "濃郁巧克力蛋糕體加上酒漬櫻桃，鋪滿巧克力碎片，經典德式風味。" },
-            "cake04": { name: "法式檸檬塔", price: 100, img: "image/cake2.jpg", desc: "酥脆塔皮搭配酸甜平衡的法式檸檬奶油餡，清新解膩的好選擇。" },
-
-            "bread01": { name: "法式經典長棍", price: 65, img: "image/bread1.jpg", desc: "外皮酥脆內裡充滿麥香，適合單吃或搭配濃湯的經典法國麵包。" },
-            "bread02": { name: "綜合雜糧麵包", price: 80, img: "image/bread2.jpg", desc: "富含多種穀物與堅果，口感紮實有嚼勁，健康滿分的美味選擇。" },
-            "bread03": { name: "奶油海鹽羅宋", price: 70, img: "image/bread3.jpg", desc: "濃郁奶油香氣與微鹹海鹽的完美結合，層層分明的酥脆口感。" },
-            "bread04": { name: "香蒜帕瑪森", price: 75, img: "image/bread1.jpg", desc: "塗滿特製香蒜奶油與帕瑪森起司，烤至金黃酥脆，香氣四溢。" }
-        };
-
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const productId = urlParams.get('id');
+            const pd = getProduct(productId);
 
-            if(productId && productsDB[productId]) {
-                const pd = productsDB[productId];
+            if (productId && pd) {
+                document.title = `${pd.name} - 上品基酒`;
+                document.getElementById('pd-image').src = pd.img;
+                document.getElementById('pd-name').innerText = pd.name;
+                document.getElementById('pd-desc').innerText = pd.desc;
+                document.getElementById('pd-price').innerText = `NT$ ${pd.price}`;
+                const stockEl = document.createElement('div');
+                stockEl.className = 'pd-stock';
+                stockEl.innerText = pd.stock > 0 ? `庫存：${pd.stock} 份` : '已售完';
+                document.querySelector('.info-section').insertBefore(stockEl, document.getElementById('add-to-cart-btn'));
+
+                if (pd.stock <= 0) {
+                    const btn = document.getElementById('add-to-cart-btn');
+                    btn.disabled = true;
+                    btn.innerText = '商品已售完';
+                    btn.style.opacity = '0.65';
+                    btn.style.cursor = 'not-allowed';
+                }
+
+                if (!productId.startsWith('tea')) {
+                    document.getElementById('sugar-group').style.display = 'none';
+                    document.getElementById('ice-group').style.display = 'none';
+                    document.getElementById('pd-badge').innerText = '精緻蛋糕 / 手工麵包';
+                    document.getElementById('pd-badge').style.background = '#2ECC71';
+                }
+
+                document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+                    const qty = parseInt(document.getElementById('pd-qty').value);
+                    let sugar = '--';
+                    let ice = '--';
+                    if (productId.startsWith('tea')) {
+                        sugar = document.querySelector('#sugar-options .active').innerText;
+                        ice = document.querySelector('#ice-options .active').innerText;
+                    }
+                    const added = addToCart(productId, { qty, sugar, ice });
+                    if (added) {
+                        let alertText = productId.startsWith('tea') ? `(${sugar}/${ice}) ` : '';
+                        alert(`【${pd.name}】${alertText}x ${qty} 已加入購物車！`);
+                        window.location.href = 'cart.html';
+                    }
+                });
+            } else {
+                alert('找不到該商品！將返回首頁。');
+                window.location.href = 'index.html';
+            }
+        });
                 document.title = `${pd.name} - 星巴克 Starbucks`;
                 document.getElementById('pd-image').src = pd.img;
                 document.getElementById('pd-name').innerText = pd.name;

@@ -4,32 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>香奈兒 CHANEL - 香水 x 彩妝 x 護膚品</title>
+    <title>上品基酒 - 伏特加 x 威士忌 x 朗姆酒</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%); min-height: 100vh; overflow-x: hidden; padding-top: 60px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: linear-gradient(135deg, #2C1810 0%, #1A0F08 100%); min-height: 100vh; overflow-x: hidden; padding-top: 60px; }
 
         /* Navbar Styles */
-        .navbar { background: #FFF0F5; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; }
+        .navbar { background: #F5EEDC; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; }
         .navbar-container { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-        .navbar-logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #000000; text-decoration: none; }
+        .navbar-logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #8B4513; text-decoration: none; }
         .navbar-logo .logo { width: 40px; height: 40px; margin-right: 10px; }
         .navbar-search-container { flex-grow: 1; display: flex; justify-content: center; }
         .navbar-search { padding: 8px 15px; border: 1px solid #ccc; border-radius: 20px; font-size: 0.9rem; width: 100%; max-width: 400px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-        .navbar-search:focus { outline: none; border-color: #FF69B4; box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.2); }
+        .navbar-search:focus { outline: none; border-color: #8B4513; box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2); }
         .navbar-menu { display: flex; list-style: none; gap: 15px; align-items: center; margin: 0; padding: 0; }
         .navbar-menu li { position: relative; }
-        .navbar-menu a { text-decoration: none; color: #000000; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem; }
-        .navbar-menu a:hover { color: #FF69B4; }
-        .navbar-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #000000; }
+        .navbar-menu a { text-decoration: none; color: #8B4513; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem; }
+        .navbar-menu a:hover { color: #A0522D; }
+        .navbar-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #8B4513; }
 
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
         
         /* 菜單區塊樣式 */
-        .menu-section { background: #FCE4EC; padding: 3rem 1rem 4rem; text-align: center; }
-        .menu-title { color: #000000; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 1rem; opacity: 0; animation: fadeInUp 1s ease-out forwards; border-bottom: 3px solid #FF69B4; display: inline-block; padding-bottom: 10px; }
+        .menu-section { background: #F0E6D2; padding: 3rem 1rem 4rem; text-align: center; }
+        .menu-title { color: #333; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 1rem; opacity: 0; animation: fadeInUp 1s ease-out forwards; border-bottom: 3px solid #6F4E37; display: inline-block; padding-bottom: 10px; }
         .menu-subtitle { color: #666; margin-bottom: 3rem; font-size: 1.1rem; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
         .menu-item { background: #ffffff; border-radius: 15px; padding: 1.5rem; text-align: center; color: #333; opacity: 0; transform: translateY(50px); transition: all 0.6s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center; }
@@ -39,28 +39,31 @@
         .menu-item-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
         .menu-item:hover .menu-item-image img { transform: scale(1.1); }
         .menu-item-name { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; color: #333; }
-        .menu-item-price { font-size: 1.05rem; font-weight: 500; color: #FF69B4; margin-bottom: 1rem; }
+        .menu-item-price { font-size: 1.05rem; font-weight: 500; color: #6F4E37; margin-bottom: 1rem; }
         .menu-item-actions { display: flex; gap: 0.5rem; margin-top: auto; justify-content: center; width: 100%; }
         .menu-button { padding: 0.75rem 1rem; font-size: 0.95rem; border-radius: 25px; flex: 1; text-align: center; transition: all 0.3s ease; cursor: pointer; border: 1px solid transparent; font-weight: bold; }
-        .menu-button.buy { background-color: #FF69B4; color: white; }
-        .menu-button.buy:hover { background-color: #FF1493; transform: translateY(-2px); }
-        .menu-button.learn-more { background-color: white; color: #000000; border-color: #000000; text-decoration: none; }
-        .menu-button.learn-more:hover { background-color: #FFF0F5; transform: translateY(-2px); }
+        .menu-button.buy { background-color: #8B4513; color: white; }
+        .menu-button.buy:hover { background-color: #5C2E0F; transform: translateY(-2px); }
+        .menu-button.disabled { opacity: 0.55; cursor: not-allowed; }
+        .menu-button.learn-more { background-color: white; color: #8B4513; border-color: #8B4513; text-decoration: none; }
+        .menu-button.learn-more:hover { background-color: #FFF8DC; transform: translateY(-2px); }
+        .menu-item-stock { margin-top: 0.75rem; color: #6F4E37; font-size: 0.95rem; font-weight: 600; }
+        .cart-badge { display: none; margin-left: 6px; min-width: 24px; font-size: 0.8rem; padding: 2px 8px; border-radius: 999px; background: #8B4513; color: white; font-weight: 700; }
 
         /* Footer Styles */
-        .footer { background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%); padding: 4rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; position: relative; overflow: hidden; border-top: none; }
-        .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #FF69B4, #FFC0CB); }
+        .footer { background: linear-gradient(135deg, #4A3623 0%, #3C2A1E 100%); padding: 4rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; position: relative; overflow: hidden; border-top: none; }
+        .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #8B4513, #5C2E0F); }
         .footer-section { display: flex; flex-direction: column; gap: 1.2rem; min-width: 0; }
-        .footer-section h3 { color: #333; font-size: 1.3rem; font-weight: 600; position: relative; padding-bottom: 0.8rem; margin-bottom: 0.5rem; }
-        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, #FF69B4, #FFC0CB); border-radius: 2px; }
-        .footer-section p, .footer-section ul li { color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0; }
+        .footer-section h3 { color: #F5EEDC; font-size: 1.3rem; font-weight: 600; position: relative; padding-bottom: 0.8rem; margin-bottom: 0.5rem; }
+        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, #8B4513, #5C2E0F); border-radius: 2px; }
+        .footer-section p, .footer-section ul li { color: #D2C4A7; font-size: 0.95rem; line-height: 1.6; margin: 0; }
         .footer-section ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.8rem; }
         .footer-section ul li { display: flex; align-items: center; transition: transform 0.3s ease; white-space: nowrap; }
         .footer-section ul li a { text-decoration: none; color: inherit; width: 100%; display: inline-block; }
-        .footer-section ul li:hover { transform: translateX(5px); color: #FF69B4; }
+        .footer-section ul li:hover { transform: translateX(5px); color: #8B4513; }
         .social-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
-        .social-links a { text-decoration: none; color: #666; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; transition: all 0.3s ease; background: rgba(255, 182, 193, 0.1); display: inline-flex; align-items: center; white-space: nowrap; }
-        .social-links a:hover { background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); color: white; transform: translateY(-2px); }
+        .social-links a { text-decoration: none; color: #D2C4A7; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; transition: all 0.3s ease; background: rgba(139, 69, 19, 0.1); display: inline-flex; align-items: center; white-space: nowrap; }
+        .social-links a:hover { background: linear-gradient(135deg, #8B4513 0%, #5C2E0F 100%); color: white; transform: translateY(-2px); }
         .social-logo { width: 20px; height: 20px; margin-right: 8px; }
         
         @media (max-width: 768px) {
@@ -76,23 +79,24 @@
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">
-                <img src="image/logo.jpg" alt="香奈兒" class="logo">
-                <span>香奈兒 CHANEL</span>
+                <img src="image/logo.jpg" alt="上品基酒" class="logo">
+                <span>上品基酒</span>
             </a>
             <div class="navbar-search-container">
-                <input type="search" id="searchInput" class="navbar-search" placeholder="搜尋香水、彩妝、護膚品...">
+                <input type="search" id="searchInput" class="navbar-search" placeholder="搜尋伏特加、威士忌、朗姆酒...">
             </div>
             <button class="navbar-toggle" id="navbarToggle">☰</button>
             <ul class="navbar-menu" id="navbarMenu">
-                <li><a href="#perfume"><i class="fa-solid fa-bottle-droplet"></i> 香水</a></li>
-                <li><a href="#makeup"><i class="fa-solid fa-wand-magic-sparkles"></i> 彩妝</a></li>
-                <li><a href="#skincare"><i class="fa-solid fa-spa"></i> 護膚品</a></li>
+                <li><a href="#vodka"><i class="fa-solid fa-bottle-water"></i> 伏特加</a></li>
+                <li><a href="#whiskey"><i class="fa-solid fa-tumbler"></i> 威士忌</a></li>
+                <li><a href="#rum"><i class="fa-solid fa-flask"></i> 朗姆酒</a></li>
                 <li><a href="leaderboard.html"><i class="fa-solid fa-crown"></i> 排行榜</a></li>
-                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> 購物車</a></li>
-                <li><a href="index1.html"><i class="fa-solid fa-cart-shopping"></i> 資料表</a></li>
-                <li><a href="index2.html"><i class="fa-solid fa-cart-shopping"></i> 商品資料</a></li>
+                <li><a href="order.html"><i class="fa-solid fa-list-check"></i> 訂單查閱</a></li>
+                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> 購物車 <span data-cart-count class="cart-badge">0</span></a></li>
+                <li><a href="index2.html"><i class="fa-solid fa-cart-shopping"></i> 會員資料</a></li>
+                <li><a href="index1.html"><i class="fa-solid fa-cart-shopping"></i> 商品資訊</a></li>
                 <li id="nav-login"><a href="login.html"><i class="fa-solid fa-user"></i> 登入/註冊</a></li>
-                <li id="nav-user" style="display:none;"><a href="#" id="user-display" style="color:#000000; font-weight:bold;"></a></li>
+                <li id="nav-user" style="display:none;"><a href="#" id="user-display" style="color:#8B4513; font-weight:bold;"></a></li>
                 <li id="nav-logout" style="display:none;"><a href="#" id="btn-logout" style="color:#e74c3c;">登出</a></li>
             </ul>
         </div>
@@ -102,43 +106,43 @@
         沒有找到符合的商品，請嘗試其他關鍵字。
     </div>
 
-    <section id="perfume" class="menu-section">
-        <h2 class="menu-title">💐 精品香水</h2>
-        <p class="menu-subtitle">Iconic Fragrances Collection</p>
+    <section id="vodka" class="menu-section">
+        <h2 class="menu-title">🥃 優質伏特加</h2>
+        <p class="menu-subtitle">Premium Vodka Selection</p>
         <div class="menu-grid">
-            <div class="menu-item"><div class="menu-item-image"><img src="image/drink1.jpg" alt="香奈兒 No.5 香水"></div><div class="menu-item-name">香奈兒 No.5</div><div class="menu-item-price">NT$ 3,200</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('perfume01')">加入購物車</button><a href="product.html?id=perfume01" class="menu-button learn-more">詳細</a></div></div>
-            <div class="menu-item"><div class="menu-item-image"><img src="image/drink2.jpg" alt="Coco Mademoiselle"></div><div class="menu-item-name">Coco Mademoiselle</div><div class="menu-item-price">NT$ 2,800</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('perfume02')">加入購物車</button><a href="product.html?id=perfume02" class="menu-button learn-more">詳細</a></div></div>
-            <div class="menu-item"><div class="menu-item-image"><img src="image/drink3.jpg" alt="Allure 香水"></div><div class="menu-item-name">Allure</div><div class="menu-item-price">NT$ 2,600</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('perfume03')">加入購物車</button><a href="product.html?id=perfume03" class="menu-button learn-more">詳細</a></div></div>
-            <div class="menu-item"><div class="menu-item-image"><img src="image/drink4.jpg" alt="Gabrielle 香水"></div><div class="menu-item-name">Gabrielle</div><div class="menu-item-price">NT$ 3,000</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('perfume04')">加入購物車</button><a href="product.html?id=perfume04" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="vodka01"><div class="menu-item-image"><img src="image/drink1.jpg" alt="俄羅斯經典伏特加"></div><div class="menu-item-name">俄羅斯經典伏特加</div><div class="menu-item-price">NT$ 1,200</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('vodka01')">加入購物車</button><a href="product.html?id=vodka01" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="vodka02"><div class="menu-item-image"><img src="image/drink2.jpg" alt="波蘭高級伏特加"></div><div class="menu-item-name">波蘭高級伏特加</div><div class="menu-item-price">NT$ 950</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('vodka02')">加入購物車</button><a href="product.html?id=vodka02" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="vodka03"><div class="menu-item-image"><img src="image/drink3.jpg" alt="瑞典冰晶伏特加"></div><div class="menu-item-name">瑞典冰晶伏特加</div><div class="menu-item-price">NT$ 1,400</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('vodka03')">加入購物車</button><a href="product.html?id=vodka03" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="vodka04"><div class="menu-item-image"><img src="image/drink4.jpg" alt="美國頂級伏特加"></div><div class="menu-item-name">美國頂級伏特加</div><div class="menu-item-price">NT$ 1,100</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('vodka04')">加入購物車</button><a href="product.html?id=vodka04" class="menu-button learn-more">詳細</a></div></div>
         </div>
     </section>
 
-    <section id="makeup" class="menu-section" style="background: #DDD9D0;">
-        <h2 class="menu-title" style="border-color: #B8936D;">💄 彩妝系列</h2>
-        <p class="menu-subtitle">Makeup & Beauty Collection</p>
+    <section id="whiskey" class="menu-section" style="background: #E8D8C8;">
+        <h2 class="menu-title" style="border-color: #D4A574;">🥃 精選威士忌</h2>
+        <p class="menu-subtitle">Premium Whiskey Collection</p>
         <div class="menu-grid">
-            <div class="menu-item"><div class="menu-item-image"><img src="image/cake1.jpg" alt="Coco Rouge 唇膏"></div><div class="menu-item-name">Coco Rouge 唇膏</div><div class="menu-item-price">NT$ 1,280</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('makeup01')">加入購物車</button><a href="product.html?id=makeup01" class="menu-button learn-more">詳細</a></div></div>
-            <div class="menu-item"><div class="menu-item-image"><img src="image/cake2.JPG" alt="Les Beiges 粉底"></div><div class="menu-item-name">Les Beiges 粉底</div><div class="menu-item-price">NT$ 2,080</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('makeup02')">加入購物車</button><a href="product.html?id=makeup02" class="menu-button learn-more">詳細</a></div></div>
-            <div class="menu-item"><div class="menu-item-image"><img src="image/cake3.jpg" alt="Ombre Première 眼影"></div><div class="menu-item-name">Ombre Première 眼影</div><div class="menu-item-price">NT$ 980</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('makeup03')">加入購物車</button><a href="product.html?id=makeup03" class="menu-button learn-more">詳細</a></div></div>
-            <div class="menu-item"><div class="menu-item-image"><img src="image/cake4.jpg" alt="Powder Blush 腮紅"></div><div class="menu-item-name">Powder Blush 腮紅</div><div class="menu-item-price">NT$ 1,380</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('makeup04')">加入購物車</button><a href="product.html?id=makeup04" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="whiskey01"><div class="menu-item-image"><img src="image/cake1.jpg" alt="蘇格蘭單一麥芽威士忌"></div><div class="menu-item-name">蘇格蘭單一麥芽威士忌</div><div class="menu-item-price">NT$ 2,500</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('whiskey01')">加入購物車</button><a href="product.html?id=whiskey01" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="whiskey02"><div class="menu-item-image"><img src="image/cake2.JPG" alt="愛爾蘭威士忌"></div><div class="menu-item-name">愛爾蘭威士忌</div><div class="menu-item-price">NT$ 1,800</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('whiskey02')">加入購物車</button><a href="product.html?id=whiskey02" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="whiskey03"><div class="menu-item-image"><img src="image/cake3.jpg" alt="美國波本威士忌"></div><div class="menu-item-name">美國波本威士忌</div><div class="menu-item-price">NT$ 2,000</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('whiskey03')">加入購物車</button><a href="product.html?id=whiskey03" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="whiskey04"><div class="menu-item-image"><img src="image/cake4.jpg" alt="日本頂級威士忌"></div><div class="menu-item-name">日本頂級威士忌</div><div class="menu-item-price">NT$ 3,200</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('whiskey04')">加入購物車</button><a href="product.html?id=whiskey04" class="menu-button learn-more">詳細</a></div></div>
         </div>
     </section>
 
-    <section id="skincare" class="menu-section" style="background: #CCCAC2;">
-        <h2 class="menu-title" style="border-color: #8B7355;">✨ 護膚品系列</h2>
-        <p class="menu-subtitle">Skincare & Treatment</p>
+    <section id="rum" class="menu-section" style="background: #D2C4A7;">
+        <h2 class="menu-title" style="border-color: #A0826D;">🥃 頂級朗姆酒</h2>
+        <p class="menu-subtitle">Premium Rum Varieties</p>
         <div class="menu-grid">
-            <div class="menu-item"><div class="menu-item-image"><img src="image/bread1.JPG" alt="No.5 精粹乳液"></div><div class="menu-item-name">No.5 精粹乳液</div><div class="menu-item-price">NT$ 2,480</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('skincare01')">加入購物車</button><a href="product.html?id=skincare01" class="menu-button learn-more">詳細</a></div></div>
-            <div class="menu-item"><div class="menu-item-image"><img src="image/bread2.JPG" alt="Blue Serum 精華液"></div><div class="menu-item-name">Blue Serum 精華液</div><div class="menu-item-price">NT$ 3,200</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('skincare02')">加入購物車</button><a href="product.html?id=skincare02" class="menu-button learn-more">詳細</a></div></div>
-            <div class="menu-item"><div class="menu-item-image"><img src="image/bread3.JPG" alt="Hydra Beauty 面膜"></div><div class="menu-item-name">Hydra Beauty 面膜</div><div class="menu-item-price">NT$ 1,680</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('skincare03')">加入購物車</button><a href="product.html?id=skincare03" class="menu-button learn-more">詳細</a></div></div>
-            <div class="menu-item"><div class="menu-item-image"><img src="image/bread4.jpg" alt="Gentle Eye Cream 眼霜"></div><div class="menu-item-name">Gentle Eye Cream 眼霜</div><div class="menu-item-price">NT$ 1,980</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('skincare04')">加入購物車</button><a href="product.html?id=skincare04" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="rum01"><div class="menu-item-image"><img src="image/bread1.JPG" alt="古巴黑朗姆酒"></div><div class="menu-item-name">古巴黑朗姆酒</div><div class="menu-item-price">NT$ 850</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('rum01')">加入購物車</button><a href="product.html?id=rum01" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="rum02"><div class="menu-item-image"><img src="image/bread2.JPG" alt="牙買加金朗姆酒"></div><div class="menu-item-name">牙買加金朗姆酒</div><div class="menu-item-price">NT$ 920</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('rum02')">加入購物車</button><a href="product.html?id=rum02" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="rum03"><div class="menu-item-image"><img src="image/bread3.JPG" alt="巴西白朗姆酒"></div><div class="menu-item-name">巴西白朗姆酒</div><div class="menu-item-price">NT$ 750</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('rum03')">加入購物車</button><a href="product.html?id=rum03" class="menu-button learn-more">詳細</a></div></div>
+            <div class="menu-item" data-product-id="rum04"><div class="menu-item-image"><img src="image/bread4.jpg" alt="委內瑞拉頂級朗姆"></div><div class="menu-item-name">委內瑞拉頂級朗姆</div><div class="menu-item-price">NT$ 1,500</div><div class="menu-item-stock">庫存：--</div><div class="menu-item-actions"><button class="menu-button buy" onclick="addToCart('rum04')">加入購物車</button><a href="product.html?id=rum04" class="menu-button learn-more">詳細</a></div></div>
         </div>
     </section>
 
     <footer class="footer">
         <div class="footer-section">
             <h3>品牌介紹</h3>
-            <p>香奈兒 CHANEL - 香水 x 彩妝 x 護膚品 | 精選全球頂級美妝品</p>
+            <p>上品基酒 - 伏特加 x 威士忌 x 朗姆酒 | 精選全球頂級基酒</p>
             <div class="social-links">
                 <a href="https://instagram.com" target="_blank"><img src="image/Instagram-logo.png" alt="Instagram Logo" class="social-logo"> Instagram</a>
                 <a href="https://line.me" target="_blank"><img src="image/line-logo.png" alt="LINE Logo" class="social-logo"> LINE</a>
@@ -147,21 +151,21 @@
         <div class="footer-section">
             <h3>產品區塊</h3>
             <ul>
-                <li><a href="#perfume">💐 精品香水</a></li>
-                <li><a href="#makeup">💄 彩妝系列</a></li>
-                <li><a href="#skincare">✨ 護膚品系列</a></li>
+                <li><a href="#vodka">🥃 優質伏特加</a></li>
+                <li><a href="#whiskey">🥃 精選威士忌</a></li>
+                <li><a href="#rum">🥃 頂級朗姆酒</a></li>
                 <li><a href="leaderboard.html">⭐ 銷售排行</a></li>
             </ul>
         </div>
         <div class="footer-section">
             <h3>聯繫我們</h3>
-            <p>📧 電子郵件：service@chanel-beauty.com</p>
+            <p>📧 電子郵件：service@premium-spirits.com</p>
             <p>📞 電話：0952702813</p>
-            <p>🏪 地址：台北市信義區香港路88號</p>
+            <p>🏪 地址：台北市大安區忠孝東路四段123號</p>
         </div>
         <div class="footer-section">
             <h3>版權資訊</h3>
-            <p>© 2025 香奈兒 CHANEL. All rights reserved.</p>
+            <p>© 2025 上品基酒. All rights reserved.</p>
             <p>設計製作者：薛翔謙</p>
         </div>
     </footer>
@@ -193,32 +197,24 @@
 
         document.getElementById('btn-logout').addEventListener('click', (e) => {
             e.preventDefault();
-            if(confirm("確定要登出嗎？")) { 
-                window.SiteJS.clearCart();
-                signOut(auth).then(() => { window.location.reload(); }); 
-            }
+            if(confirm("確定要登出嗎？")) { localStorage.removeItem('starbucks_cart'); signOut(auth).then(() => { window.location.reload(); }); }
         });
     </script>
 
-    <script src="js/site.js"></script>
     <script>
-        // 使用共用的 site.js 中的 addToCart 函數
         function addToCart(itemId) {
-            // 驗證商品是否存在
-            if (!window.SiteJS.getProduct(itemId)) {
-                alert('商品不存在！');
-                return;
-            }
+            let cart = JSON.parse(localStorage.getItem('starbucks_cart')) || [];
+            let defSugar = itemId.startsWith('tea') ? '正常糖' : '--';
+            let defIce = itemId.startsWith('tea') ? '正常冰' : '--';
+            let alertMsg = itemId.startsWith('tea') ? '(預設正常糖、正常冰)' : '';
+
+            const existingIndex = cart.findIndex(item => item.id === itemId && item.sugar === defSugar && item.ice === defIce);
+            if (existingIndex > -1) { cart[existingIndex].qty += 1; } 
+            else { cart.push({ id: itemId, qty: 1, sugar: defSugar, ice: defIce }); }
             
-            // 使用共用函數添加到購物車
-            const success = window.SiteJS.addToCart(itemId, 1);
-            
-            if (success) {
-                alert('商品已加入購物車！');
-                window.location.href = "cart.html";
-            } else {
-                alert('添加商品失敗，請重試！');
-            }
+            localStorage.setItem('starbucks_cart', JSON.stringify(cart));
+            alert(`商品已加入購物車！${alertMsg}`);
+            window.location.href = "cart.html";
         }
 
         const searchInput = document.getElementById('searchInput');
@@ -254,6 +250,27 @@
         document.querySelectorAll('.menu-item').forEach((card, index) => setTimeout(() => observer.observe(card), index * 50));
         
         document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+    <script src="js/site.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.menu-item[data-product-id]').forEach((item) => {
+                const productId = item.dataset.productId;
+                const product = getProduct(productId);
+                const label = item.querySelector('.menu-item-stock');
+                const button = item.querySelector('.menu-button.buy');
+
+                if (product) {
+                    label.innerText = product.stock > 0 ? `庫存：${product.stock} 份` : '已售完';
+                    if (product.stock <= 0) {
+                        button.disabled = true;
+                        button.classList.add('disabled');
+                        button.innerText = '售完';
+                    }
+                }
+            });
+            renderCartBadge();
+        });
     </script>
 </body>
 </html>

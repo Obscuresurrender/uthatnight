@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>操作成功 - 香奈兒 CHANEL</title>
+    <title>操作成功 - 上品基酒</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -16,7 +16,7 @@
             justify-content: center;
             font-family: 'Noto Sans TC', sans-serif;
             /* 與 login.html 相同的漸層背景 */
-            background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%);
+            background: linear-gradient(135deg, #F0E6D2 0%, #C3B091 100%);
             overflow: hidden;
         }
 
@@ -45,12 +45,12 @@
 
         /* 教授要求的紅框區塊 (質感升級版) */
         .professor-box {
-            border: 3px solid #FF69B4; /* 粉色邊框 */
+            border: 3px solid #FF4757; /* 鮮豔的紅色邊框 */
             background: #ffffff;
             border-radius: 20px;
             padding: 50px 30px 40px 30px;
             position: relative;
-            box-shadow: inset 0 0 20px rgba(255, 105, 180, 0.05);
+            box-shadow: inset 0 0 20px rgba(255, 71, 87, 0.05);
         }
 
         /* 頂部打勾圖示 */
@@ -79,7 +79,7 @@
 
         /* 教授要求的：紅字副標題 */
         .msg-welcome {
-            color: #FF69B4;
+            color: #FF4757;
             font-size: 28px;
             font-weight: 700;
             margin: 0 0 35px 0;
@@ -94,7 +94,7 @@
         }
 
         .btn-custom {
-            border: 2px solid #FF69B4; /* 粉色黑框 */
+            border: 2px solid #006241; /* 深色黑框 */
             border-radius: 50px;
             padding: 12px 30px;
             font-size: 18px;
@@ -157,9 +157,7 @@
             <i class="fa-solid fa-circle-check success-icon"></i>
             
             <h1 class="msg-title" id="display-title">會員註冊成功</h1>
-            <h2 class="msg-welcome" id="display-welcome">歡迎 <span id="user-name">薛翔謙</span> 成為會員</h2>
-            
-            <div id="order-info"></div>
+            <h2 class="msg-welcome" id="display-welcome">歡迎 <span id="user-name">邱彥融</span> 成為會員</h2>
             
             <div class="btn-group">
                 <a href="index.html" class="btn-custom btn-home"><i class="fa-solid fa-house"></i> 點選回首頁</a>
@@ -167,69 +165,57 @@
             </div>
 
             <div class="timer-text">
-                系統將在 <span id="sec">3</span> 秒後自動導向...
+                系統將在 <span id="sec">3</span> 秒後自動導向主頁面...
             </div>
         </div>
     </div>
 
     <script src="js/site.js"></script>
     <script>
-        // 使用 site.js 中的函數處理頁面邏輯
-        document.addEventListener('DOMContentLoaded', function() {
-            const params = new URLSearchParams(window.location.search);
-            const type = params.get('type');
-            const name = params.get('name') || '薛翔謙';
-            const orderId = params.get('orderId');
+        // 抓取網址參數
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get('type');
+        const name = params.get('name') || '薛翔謙';
+        const orderId = params.get('orderId');
 
-            // 初始化成功頁面（由 site.js 提供的函數）
-            if (window.SiteJS && window.SiteJS.initSuccessPage) {
-                window.SiteJS.initSuccessPage(type, name, orderId);
-                
-                // 根據類型決定自動跳轉目標
-                const redirectUrl = type === 'checkout' ? 'order.html' : 'index.html';
-                window.SiteJS.initAutoRedirect(3, redirectUrl);
-            } else {
-                // 備用方案：如果 site.js 未加載成功，使用內聯邏輯
-                const titleEl = document.getElementById('display-title');
-                const welcomeEl = document.getElementById('display-welcome');
-                const actionLink = document.getElementById('action-link');
+        const titleEl = document.getElementById('display-title');
+        const welcomeEl = document.getElementById('display-welcome');
+        const actionLink = document.getElementById('action-link');
 
-                if (type === 'login') {
-                    titleEl.innerText = "會員登入成功";
-                    welcomeEl.innerHTML = `歡迎 <span style="color:#006241;">${name}</span> 回來`;
-                    actionLink.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> 前往購物車`;
-                    actionLink.href = "cart.html";
-                } else if (type === 'checkout') {
-                    titleEl.innerText = "交易成功";
-                    welcomeEl.innerHTML = `感謝您的購買！<br><span style="color:#006241; font-size: 1.1em;">訂單編號: ${orderId || 'N/A'}</span>`;
-                    actionLink.innerHTML = `<i class="fa-solid fa-list"></i> 查看訂單`;
-                    actionLink.href = "order.html";
-                } else if (type === 'register' || type === 'signup') {
-                    titleEl.innerText = "會員註冊成功";
-                    welcomeEl.innerHTML = `歡迎 <span style="color:#006241;">${name}</span> 成為會員`;
-                    actionLink.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket"></i> 前往登入`;
-                    actionLink.href = "login.html";
-                } else {
-                    // 未定義類型，回首頁
-                    titleEl.innerText = "操作成功";
-                    welcomeEl.innerHTML = `謝謝您！`;
-                    actionLink.innerHTML = `<i class="fa-solid fa-house"></i> 回首頁`;
-                    actionLink.href = "index.html";
-                }
+        // 根據來源變更顯示內容
+        if (type === 'checkout' && orderId) {
+            titleEl.innerText = '交易成功';
+            welcomeEl.innerHTML = `訂單編號：<strong>${orderId}</strong> 已完成付款`;
+            actionLink.innerHTML = `<i class="fa-solid fa-list-check"></i> 查看訂單列表`;
+            actionLink.href = 'order.html';
+        } else if (type === 'login') {
+            titleEl.innerText = "會員登入成功";
+            welcomeEl.innerHTML = `歡迎 <span style="color:#006241;">${name}</span> 回來`;
+            actionLink.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> 前往購物車`;
+            actionLink.href = "cart.html";
+        } else if (type === 'register') {
+            titleEl.innerText = '會員註冊成功';
+            welcomeEl.innerHTML = `歡迎 <span style="color:#006241;">${name}</span> 成為會員`;
+            actionLink.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket"></i> 點選立即登入`;
+            actionLink.href = 'login.html';
+        } else {
+            titleEl.innerText = '操作成功';
+            welcomeEl.innerHTML = `歡迎 <span style="color:#006241;">${name}</span> 您好`;
+            actionLink.innerHTML = `<i class="fa-solid fa-house"></i> 回首頁`;
+            actionLink.href = 'index.html';
+        }
 
-                // 自動跳轉倒數
-                let count = 3;
-                const secEl = document.getElementById('sec');
-                const timer = setInterval(() => {
-                    count--;
-                    secEl.innerText = count;
-                    if (count <= 0) {
-                        clearInterval(timer);
-                        window.location.href = type === 'checkout' ? 'order.html' : 'index.html';
-                    }
-                }, 1000);
+        // 自動跳轉倒數邏輯
+        let count = 3;
+        const secEl = document.getElementById('sec');
+        const timer = setInterval(() => {
+            count--;
+            secEl.innerText = count;
+            if (count <= 0) {
+                clearInterval(timer);
+                window.location.href = "index.html";
             }
-        });
+        }, 1000);
     </script>
 </body>
 </html>

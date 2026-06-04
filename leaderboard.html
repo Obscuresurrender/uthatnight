@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>銷售排行榜 - 香奈兒 CHANEL</title>
+    <title>銷售排行榜 - 上品基酒</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #FFF0F5; min-height: 100vh; display: flex; flex-direction: column; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #F0E6D2; min-height: 100vh; display: flex; flex-direction: column; }
         
         /* Navbar Styles */
-        .navbar { background: #FFF0F5; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000; }
+        .navbar { background: #F5EEDC; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000; }
         .navbar-container { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-        .navbar-logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #FF69B4; text-decoration: none; }
+        .navbar-logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #8B4513; text-decoration: none; }
         .navbar-logo .logo { width: 40px; height: 40px; margin-right: 10px; }
         .navbar-menu { display: flex; list-style: none; gap: 20px; align-items: center; margin: 0; padding: 0; }
         .navbar-menu li { position: relative; }
-        .navbar-menu a { text-decoration: none; color: #FF69B4; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem;}
-        .navbar-menu a:hover { color: #FF1493; }
-        .navbar-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #FF69B4; }
+        .navbar-menu a { text-decoration: none; color: #8B4513; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem;}
+        .navbar-menu a:hover { color: #A0522D; }
+        .navbar-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #8B4513; }
 
         /* --- 排行榜專屬樣式 --- */
-        .leaderboard-wrapper { flex: 1; padding: 4rem 1rem; background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E1 100%); }
+        .leaderboard-wrapper { flex: 1; padding: 4rem 1rem; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
         .leaderboard-header { text-align: center; margin-bottom: 3rem; animation: fadeInUp 1s ease-out forwards; }
-        .leaderboard-header h1 { font-size: 3rem; color: #FF69B4; font-weight: 800; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
-        .leaderboard-header p { font-size: 1.2rem; color: #FF1493; margin-top: 10px; }
+        .leaderboard-header h1 { font-size: 3rem; color: #8B4513; font-weight: 800; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+        .leaderboard-header p { font-size: 1.2rem; color: #A0522D; margin-top: 10px; }
         
         .rank-container { max-width: 900px; margin: 0 auto; }
         
@@ -40,7 +40,7 @@
 
         .rank-1 { background: linear-gradient(to right, #ffffff, #FFF8DC); border: 2px solid rgba(255, 215, 0, 0.3); }
         .rank-2 { background: linear-gradient(to right, #ffffff, #E8E8E8); border: 2px solid rgba(192, 192, 192, 0.3); }
-        .rank-3 { background: linear-gradient(to right, #ffffff, #FFF5EE); border: 2px solid rgba(255, 105, 180, 0.3); }
+        .rank-3 { background: linear-gradient(to right, #ffffff, #FFF5EE); border: 2px solid rgba(139, 69, 19, 0.3); }
 
         .rank-badge { width: 80px; text-align: center; font-size: 2.5rem; font-weight: 900; margin-right: 20px; }
         .badge-gold { color: #FFD700; text-shadow: 0 2px 5px rgba(255, 215, 0, 0.4); }
@@ -48,19 +48,19 @@
         .badge-bronze { color: #CD7F32; text-shadow: 0 2px 5px rgba(205, 127, 50, 0.4); }
         .badge-normal { color: #A9DFBF; font-size: 2rem; }
 
-        .rank-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-right: 30px; border: 3px solid #FF69B4; }
+        .rank-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-right: 30px; border: 3px solid #DEB887; }
         
         .rank-info { flex-grow: 1; }
-        .rank-name { font-size: 1.5rem; font-weight: 700; color: #FF69B4; margin-bottom: 8px; }
+        .rank-name { font-size: 1.5rem; font-weight: 700; color: #8B4513; margin-bottom: 8px; }
         .rank-desc { font-size: 0.95rem; color: #666; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .rank-price { font-size: 1.3rem; font-weight: bold; color: #FF69B4; }
+        .rank-price { font-size: 1.3rem; font-weight: bold; color: #8B4513; }
 
         .rank-actions { display: flex; gap: 10px; flex-direction: column; }
         .btn-rank { padding: 10px 20px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; text-align: center; text-decoration: none; font-size: 0.95rem; }
-        .btn-cart { background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); color: white; box-shadow: 0 4px 10px rgba(255,105,180,0.3); }
-        .btn-cart:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(255,105,180,0.5); color: white; }
-        .btn-more { background: white; border: 2px solid #FF69B4; color: #FF69B4; }
-        .btn-more:hover { background: #FFF0F5; transform: translateY(-2px); }
+        .btn-cart { background: linear-gradient(135deg, #8B4513 0%, #5C2E0F 100%); color: white; box-shadow: 0 4px 10px rgba(139,69,19,0.3); }
+        .btn-cart:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(139,69,19,0.5); color: white; }
+        .btn-more { background: white; border: 2px solid #8B4513; color: #8B4513; }
+        .btn-more:hover { background: #FFF8DC; transform: translateY(-2px); }
 
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -75,18 +75,18 @@
         }
 
         /* Footer Styles */
-        .footer { background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%); padding: 4rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; position: relative; overflow: hidden; border-top: none; }
-        .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #FF69B4, #FFC0CB); }
+        .footer { background: linear-gradient(135deg, #4A3623 0%, #3C2A1E 100%); padding: 4rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; position: relative; overflow: hidden; border-top: none; }
+        .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #8B4513, #5C2E0F); }
         .footer-section { display: flex; flex-direction: column; gap: 1.2rem; min-width: 0; }
-        .footer-section h3 { color: #333; font-size: 1.3rem; font-weight: 600; position: relative; padding-bottom: 0.8rem; margin-bottom: 0.5rem; }
-        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, #FF69B4, #FFC0CB); border-radius: 2px; }
-        .footer-section p, .footer-section ul li { color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0; }
+        .footer-section h3 { color: #F5EEDC; font-size: 1.3rem; font-weight: 600; position: relative; padding-bottom: 0.8rem; margin-bottom: 0.5rem; }
+        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, #8B4513, #5C2E0F); border-radius: 2px; }
+        .footer-section p, .footer-section ul li { color: #D2C4A7; font-size: 0.95rem; line-height: 1.6; margin: 0; }
         .footer-section ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.8rem; }
         .footer-section ul li a { text-decoration: none; color: inherit; width: 100%; display: inline-block; transition: transform 0.3s; }
-        .footer-section ul li a:hover { transform: translateX(5px); color: #FF69B4; }
+        .footer-section ul li a:hover { transform: translateX(5px); color: #8B4513; }
         .social-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
-        .social-links a { text-decoration: none; color: #666; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; transition: all 0.3s ease; background: rgba(255, 182, 193, 0.1); display: inline-flex; align-items: center; }
-        .social-links a:hover { background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%); color: white; transform: translateY(-2px); }
+        .social-links a { text-decoration: none; color: #D2C4A7; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; transition: all 0.3s ease; background: rgba(139, 69, 19, 0.1); display: inline-flex; align-items: center; }
+        .social-links a:hover { background: linear-gradient(135deg, #8B4513 0%, #5C2E0F 100%); color: white; transform: translateY(-2px); }
         .social-logo { width: 20px; height: 20px; margin-right: 8px; }
     </style>
 </head>
@@ -96,13 +96,13 @@
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">
                 <img src="image/logo.jpg" alt="上品基酒" class="logo">
-                <span>香奈兒 CHANEL</span>
+                <span>上品基酒</span>
             </a>
             <button class="navbar-toggle" id="navbarToggle">☰</button>
             <ul class="navbar-menu" id="navbarMenu">
-                <li><a href="index.html#perfume"><i class="fa-solid fa-bottle-droplet"></i> 香水</a></li>
-                <li><a href="index.html#makeup"><i class="fa-solid fa-wand-magic-sparkles"></i> 彩妝</a></li>
-                <li><a href="index.html#skincare"><i class="fa-solid fa-spa"></i> 護膚品</a></li>
+                <li><a href="index.html#vodka"><i class="fa-solid fa-bottle-water"></i> 伏特加</a></li>
+                <li><a href="index.html#whiskey"><i class="fa-solid fa-tumbler"></i> 威士忌</a></li>
+                <li><a href="index.html#rum"><i class="fa-solid fa-flask"></i> 朗姆酒</a></li>
                 <li><a href="leaderboard.html" style="color: #8B4513; font-weight: bold;"><i class="fa-solid fa-crown"></i> 排行榜</a></li>
                 <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> 購物車</a></li>
                 <li id="nav-login"><a href="login.html"><i class="fa-solid fa-user"></i> 登入/註冊</a></li>
@@ -115,63 +115,63 @@
     <div class="leaderboard-wrapper">
         <div class="leaderboard-header">
             <h1><i class="fa-solid fa-crown text-warning"></i> 本月銷售排行榜</h1>
-            <p>香奈兒精選，最受歡迎的奢華美妝推薦</p>
+            <p>上品基酒精選，最受歡迎的頂級基酒推薦</p>
         </div>
 
         <div class="rank-container">
             <div class="rank-card rank-1">
                 <div class="rank-badge badge-gold"><i class="fa-solid fa-medal"></i> 1</div>
-                <img src="image/drink3.jpg" alt="香奈兒 No.5 香水" class="rank-img">
+                <img src="image/drink3.jpg" alt="珍珠鮮奶" class="rank-img">
                 <div class="rank-info">
-                    <div class="rank-name">香奈兒 No.5 香水</div>
-                    <div class="rank-desc">經典玫瑰與茉莉花香調，融合琥珀與麝香基調，散發優雅迷人的女性魅力，百年經典香水。</div>
-                    <div class="rank-price">NT$ 3,200</div>
+                    <div class="rank-name">珍珠鮮奶</div>
+                    <div class="rank-desc">Q彈手作珍珠搭配綠光牧場直送鮮乳，濃郁奶香與黑糖香氣完美融合，無咖啡因首選！</div>
+                    <div class="rank-price">NT$ 75</div>
                 </div>
                 <div class="rank-actions">
-                    <button class="btn-rank btn-cart" onclick="addToCart('perfume01')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
-                    <a href="product.html?id=perfume01" class="btn-rank btn-more">詳細</a>
+                    <button class="btn-rank btn-cart" onclick="addToCart('tea03')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
+                    <a href="product.html?id=tea03" class="btn-rank btn-more">詳細</a>
                 </div>
             </div>
 
             <div class="rank-card rank-2">
                 <div class="rank-badge badge-silver"><i class="fa-solid fa-medal"></i> 2</div>
-                <img src="image/drink1.jpg" alt="香奈兒可可小姐唇膏" class="rank-img">
+                <img src="image/drink1.jpg" alt="水之森玄米抹茶" class="rank-img">
                 <div class="rank-info">
-                    <div class="rank-name">香奈兒可可小姐唇膏</div>
-                    <div class="rank-desc">絲絨質地，持久滋潤，經典紅色調，完美勾勒唇型，展現自信優雅的女性魅力。</div>
-                    <div class="rank-price">NT$ 1,800</div>
+                    <div class="rank-name">水之森玄米抹茶</div>
+                    <div class="rank-desc">嚴選靜岡抹茶搭配焙煎玄米，茶湯翠綠，帶有濃郁的米香與抹茶回甘，層次豐富的經典風味。</div>
+                    <div class="rank-price">NT$ 65</div>
                 </div>
                 <div class="rank-actions">
-                    <button class="btn-rank btn-cart" onclick="addToCart('lipstick01')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
-                    <a href="product.html?id=lipstick01" class="btn-rank btn-more">詳細</a>
+                    <button class="btn-rank btn-cart" onclick="addToCart('tea01')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
+                    <a href="product.html?id=tea01" class="btn-rank btn-more">詳細</a>
                 </div>
             </div>
 
             <div class="rank-card rank-3">
                 <div class="rank-badge badge-bronze"><i class="fa-solid fa-medal"></i> 3</div>
-                <img src="image/drink1.jpg" alt="香奈兒藍色護手霜" class="rank-img">
+                <img src="image/drink1.jpg" alt="手炒黑糖鮮奶" class="rank-img">
                 <div class="rank-info">
-                    <div class="rank-name">香奈兒藍色護手霜</div>
-                    <div class="rank-desc">輕盈質地，快速吸收，富含維生素E與保濕成分，保護雙手柔嫩細緻，經典藍色包裝。</div>
-                    <div class="rank-price">NT$ 1,200</div>
+                    <div class="rank-name">手炒黑糖鮮奶</div>
+                    <div class="rank-desc">職人每日手工慢炒黑糖，淋上醇厚鮮奶，甜而不膩，帶有獨特焦糖香氣的暖心之作。</div>
+                    <div class="rank-price">NT$ 80</div>
                 </div>
                 <div class="rank-actions">
-                    <button class="btn-rank btn-cart" onclick="addToCart('handcream01')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
-                    <a href="product.html?id=handcream01" class="btn-rank btn-more">詳細</a>
+                    <button class="btn-rank btn-cart" onclick="addToCart('tea04')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
+                    <a href="product.html?id=tea04" class="btn-rank btn-more">詳細</a>
                 </div>
             </div>
 
             <div class="rank-card">
                 <div class="rank-badge badge-normal">4</div>
-                <img src="image/drink2.jpg" alt="香奈兒珍珠粉底液" class="rank-img">
+                <img src="image/drink2.jpg" alt="英倫伯爵紅茶" class="rank-img">
                 <div class="rank-info">
-                    <div class="rank-name">香奈兒珍珠粉底液</div>
-                    <div class="rank-desc">輕透質地，完美遮蓋瑕疵，富含珍珠粉成分，賦予肌膚自然光澤，持久不脫妝。</div>
-                    <div class="rank-price">NT$ 2,500</div>
+                    <div class="rank-name">英倫伯爵紅茶</div>
+                    <div class="rank-desc">特選錫蘭紅茶為基底，佐以佛手柑香氣，茶感醇厚，散發迷人優雅的英倫風情。</div>
+                    <div class="rank-price">NT$ 55</div>
                 </div>
                 <div class="rank-actions">
-                    <button class="btn-rank btn-cart" onclick="addToCart('foundation01')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
-                    <a href="product.html?id=foundation01" class="btn-rank btn-more">詳細</a>
+                    <button class="btn-rank btn-cart" onclick="addToCart('tea02')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
+                    <a href="product.html?id=tea02" class="btn-rank btn-more">詳細</a>
                 </div>
             </div>
 
@@ -182,7 +182,7 @@
     <footer class="footer">
         <div class="footer-section">
             <h3>品牌區塊</h3>
-            <p>香奈兒 CHANEL - 香水 x 彩妝 x 護膚品</p>
+            <p>星巴克 Starbucks - 飲品 x 蛋糕 x 麵包</p>
             <div class="social-links">
                 <a href="https://instagram.com" target="_blank"><img src="image/Instagram-logo.png" alt="Instagram Logo" class="social-logo"> Instagram</a>
                 <a href="https://line.me" target="_blank"><img src="image/line-logo.png" alt="LINE Logo" class="social-logo"> LINE</a>
@@ -191,9 +191,9 @@
         <div class="footer-section">
             <h3>BUSINESS 商業區塊</h3>
             <ul>
-                <li><a href="index.html#perfume">🫧 經典香水</a></li>
-                <li><a href="index.html#makeup">💄 精緻彩妝</a></li>
-                <li><a href="index.html#skincare">🧴 奢華護膚</a></li>
+                <li><a href="index.html#drinks">🥤 經典飲品</a></li>
+                <li><a href="index.html#cakes">🍰 精緻蛋糕</a></li>
+                <li><a href="index.html#breads">🥖 手工麵包</a></li>
                 <li><a href="leaderboard.html">⭐ 熱銷排行</a></li>
             </ul>
         </div>
@@ -205,7 +205,7 @@
         </div>
         <div class="footer-section">
             <h3>版權資訊</h3>
-            <p>© 2025 香奈兒 CHANEL. All rights reserved.</p>
+            <p>© 2025 星巴克 Starbucks. All rights reserved.</p>
             <p>設計製作者：薛翔謙</p>
         </div>
     </footer>
